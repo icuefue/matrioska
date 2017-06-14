@@ -1,15 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.bbva.ebdm</groupId>
-	<artifactId>linx</artifactId>
+	<groupId>com.bluetab</groupId>
+	<artifactId>matrioska</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Proyecto Padre Linx</name>
-	<description>Proyecto que contiene el core de Linx</description>
+	<name>Proyecto Padre Matrioska</name>
+	<description>Proyecto que contiene el core de Matrioska</description>
 	<modules>
-		<module>linx-ingest</module>
-		<module>linx-core</module>
+		<module>matrioska-ingest</module>
+		<module>matrioska-core</module>
 	</modules>
 	<repositories>
 		<repository>
