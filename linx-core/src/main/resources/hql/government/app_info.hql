@@ -1,0 +1,1 @@
+select des_malla, des_jobbd, des_scriptbd, des_capabd, des_casusobd from {rd_ebdmgv}.t_ebdmgv07_planning where des_scriptbd = '$1'

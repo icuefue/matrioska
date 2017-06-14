@@ -1,0 +1,7 @@
+/target/
+/scalastyle-output.xml
+/.cache-main
+/build.xml
+/.settings/
+/.classpath
+/bin/

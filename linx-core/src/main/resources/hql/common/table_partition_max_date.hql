@@ -1,0 +1,1 @@
+SELECT max(concat(lpad(year,4,'0'), lpad(month,2,'0'), lpad(day,2,'0'))) FROM {$1}.$2

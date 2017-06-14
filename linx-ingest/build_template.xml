@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="linx-ingest" basedir="." default="4-install_and_deploy">
+
+	<target name="1-clean">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="clean" />
+		</exec>
+	</target>
+
+	<target name="2-install" depends="1-clean">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="install" />
+		</exec>
+
+	</target>
+
+	<target name="3-deploy">
+		<scp file="./target/linx-ingest.jar" todir="xe58268@lpbig503:/bigdata/workspace/xe58268/linx" password="xxxxxxxx" trust="true" />
+	</target>
+	<target name="4-install_and_deploy" depends="2-install,3-deploy">
+
+	</target>
+
+
+
+</project>

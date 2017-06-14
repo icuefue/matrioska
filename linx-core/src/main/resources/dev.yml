@@ -1,0 +1,112 @@
+environment: DEV
+
+hdfs:
+  uri: hdfs://cib-hdfs-analitico
+  prefix: /group/dev
+
+impala:
+  uri: jdbc:hive2://lpbig501.igrupobbva:21051/default;principal=impala/lpbig501.igrupobbva@CLOUDERA_CIB.COM;auth-kerberos
+
+hive:
+  driver: org.apache.hive.jdbc.HiveDriver
+  schemas:
+    rd_ebdmau: d_rd_ebdmau
+    rd_ebdmgv: d_rd_ebdmgv
+    md_eva: d_md_eva
+    rd_gsds: d_rd_gsds
+    rd_informacional: d_rd_informacional
+    ud_xe58268_test: ud_xe58268_test
+    rd_gm_calculated_data: d_rd_gm_calculated_data
+    rd_sstt: d_rd_sstt
+    rd_netcash: d_rd_netcash
+    md_gm_calculated_data: d_md_gm_calculated_data
+    rd_mat: d_rd_mat
+    md_gsds: d_md_gsds
+    md_tablasgenerales: d_md_tablasgenerales
+    md_netcash_analytics: d_md_netcash_analytics
+    rd_murex: d_rd_murex
+    rd_star: d_rd_star
+    rd_mrsys: d_rd_mrsys
+    rd_algorithmics: d_rd_algorithmics
+    rd_rdr: d_rd_rdr
+    rd_assetcontrol: d_rd_assetcontrol
+    md_gsr: d_md_gsr
+
+hbase:
+  schemas:
+    ebdm: D_EBDM
+
+kafka:
+  zqquorum: lpbig503:2181/kafka
+  brokerlist: lpbig501:9092,lpbig502:9092,lpbig503:9092
+  checkpointDir: hdfs://cib-hdfs-analitico/user/%{user}/checkpointdir
+  topicLogs: EBDM-d-log-ingesta
+
+kerberos:
+  user: "%{user}@CLOUDERA_CIB.COM"
+  keytab: /user/%{user}/.keytab
+
+localfilesystempath:
+  staging: /bigdata/workspace/%{user}/stag
+  dat: /bigdata/workspace/%{user}/git/ebdm/proc/dat
+
+rdbms:
+  informacional_oracle_ekev:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/EKEV
+    username: xaekev3e
+    password: bendxa3e
+  informacional_oracle_enjc:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENJC
+    username: xaenjc1e
+    password: bensxan1e
+  informacional_oracle_endg:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENDG
+    username: xpendg9e
+    password: bendxpe9e
+  informacional_oracle_endv:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENDV
+    username: xaendv3e
+    password: bendxaen3e
+  informacional_oracle_enwf:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENWF
+    username: xaenwf1e
+    password: bensxaen1e
+  informacional_oracle_entg:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENTG
+    username: xaentg3e
+    password: bensxan3e
+  informacional_oracle_enyd:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENYD
+    username: xaenyd2e
+    password: binfxae2e
+  informacional_oracle_enbt:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENBT
+    username: xaenbt3e
+    password: bensxan3e
+  informacional_oracle_ensp:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENSP
+    username: xaensp1e
+    password: bensxan1e
+  informacional_oracle_enor:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENOR
+    username: XAENSO2E
+    password: bensxa2e
+  informacional_oracle_ends:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/ENDS
+    username: xaends1e
+    password: binfxae1e
+
+navigator: 
+  uri: https://lpbig502.igrupobbva:7187/api/v8/entities/
+  host: lpbig503.igrupobbva
+  port: 7187
+  username: xe50584
+  password: xe50584
+
+solr:
+  uri: http://lpbig501:8983/solr/
+  dictionaryCollection: AppDiccionario
+
+mail: 
+  script: /pr/ebgc/online/multipais/multicanal/cloudera_tools/tools/scripts/sendmail.sh
+ 

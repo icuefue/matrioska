@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="linx" basedir="." default="4-install_and_deploy">
+
+	<target name="1-clean">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="clean" />
+		</exec>
+	</target>
+
+	<target name="2-install" depends="1-clean">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="install" />
+		</exec>
+
+	</target>
+
+	<target name="3-deploy">
+		<scp file="./linx-core/target/linx-core.jar" todir="xe58268@lpbig503:/bigdata/workspace/xe58268/linx/lib" password="xxxxxxxx" trust="true" />
+		<scp file="./linx-ingest/target/linx-ingest.jar" todir="xe58268@lpbig503:/bigdata/workspace/xe58268/linx" password="xxxxxxxx" trust="true" />
+	</target>
+	<target name="4-install_and_deploy" depends="2-install,3-deploy">
+
+	</target>
+	<target name="5-generate site">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="site" />
+		</exec>
+	</target>
+
+	<target name="6-generate documentation">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="scala:doc" />
+		</exec>
+	</target>
+
+	<target name="7-test">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="test" />
+		</exec>
+	</target>
+
+	<target name="8-package">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="package" />
+		</exec>
+	</target>
+
+
+
+</project>

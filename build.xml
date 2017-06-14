@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="linx" basedir="." default="4-install_and_deploy">
+
+	<target name="1-clean">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="clean" />
+		</exec>
+	</target>
+
+	<target name="2-install" depends="1-clean">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="install" />
+		</exec>
+
+	</target>
+
+	<target name="3-deploy">
+		<scp file="./linx-core/target/linx-core.jar" todir="xe31320@lpbig503:/bigdata/workspace/xe31320/linx/lib" password="cuefue13" trust="true" />
+		<scp file="./linx-ingest/target/linx-ingest.jar" todir="xe31320@lpbig503:/bigdata/workspace/xe31320/linx" password="cuefue13" trust="true" />
+	</target>
+	<target name="4-install_and_deploy" depends="2-install,3-deploy">
+
+	</target>
+	<target name="5-generate site">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="site" />
+		</exec>
+	</target>
+
+	<target name="6-generate documentation">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="scala:doc" />
+		</exec>
+	</target>
+
+	<target name="7-test">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="test" />
+		</exec>
+	</target>
+
+	<target name="8-package">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="package" />
+		</exec>
+	</target>
+
+	<target name="DESPLIEGUE A PRODUCCIÓN" depends="user-input" if="confirmed">
+		<exec dir="." executable="cmd">
+			<arg value="/C" />
+			<arg value="mvn" />
+			<arg line="clean install" />
+		</exec>
+		<scp file="./linx-core/target/linx-core.jar" todir="xaebdm1p@lpbig503:/pr/ebdm/proc/scrt/linx/lib" password="Beachh0use1p" trust="true" />
+		<scp file="./linx-ingest/target/linx-ingest.jar" todir="xaebdm1p@lpbig503:/pr/ebdm/proc/scrt/linx/" password="Beachh0use1p" trust="true" />
+	</target>
+
+	<target name="user-input">
+		<input validargs="Sí,No" addproperty="user-response">
+	            ¿Seguro que quieres realizar el paso a producción?
+	        </input>
+
+		<condition property="confirmed">
+			<equals arg1="Sí" arg2="${user-response}" />
+		</condition>
+	</target>
+
+
+
+</project>

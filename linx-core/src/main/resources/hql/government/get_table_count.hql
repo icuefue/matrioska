@@ -1,0 +1,1 @@
+select count(*) as count from {$1}.$2 $3

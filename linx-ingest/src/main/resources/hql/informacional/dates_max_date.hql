@@ -1,0 +1,1 @@
+select fechaproceso from {rd_informacional}.tenydfec order by fechaproceso desc limit 1

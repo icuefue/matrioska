@@ -1,0 +1,1 @@
+create temporary function row_sequence as 'org.apache.hadoop.hive.contrib.udf.UDFRowSequence'
