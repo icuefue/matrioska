@@ -1,5 +1,7 @@
 package com.bluetab.matrioska.core.beans
 
+import com.bluetab.matrioska.core.beans.MailRecipientTypes.MailRecipientType
+
 object MailRecipientTypes {
   sealed trait MailRecipientType
   case object To extends MailRecipientType

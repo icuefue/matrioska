@@ -1,7 +1,7 @@
 package com.bluetab.matrioska.core
 
 import com.bluetab.matrioska.core.beans.{MailMessage, MailRecipientTypes}
-import com.bluetab.matrioska.core.conf.{CoreAppInfo, CoreConfig, CoreRepositories, CoreServices}
+import com.bluetab.matrioska.core.conf.{CoreAppInfo, CoreConfig, CoreRepositories, CoreServices, CoreContext}
 import kafka.serializer.StringDecoder
 import org.apache.commons.lang.exception.ExceptionUtils
 import org.apache.spark.storage.StorageLevel

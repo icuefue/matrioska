@@ -1,5 +1,6 @@
 package com.bluetab.matrioska.core.enums
 
+import com.bluetab.matrioska.core.enums.PartitionTypes.{Fechaproceso, NoPartition, PartitionType, YearMonthDay}
 import com.cloudera.sqoop.SqoopOptions.FileLayout
 
 object FileFormats {
