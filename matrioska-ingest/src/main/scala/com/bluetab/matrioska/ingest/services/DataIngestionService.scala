@@ -6,7 +6,6 @@ import org.apache.spark.streaming.dstream.DStream
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.Map
 import com.bluetab.matrioska.core.beans.Event
-import com.bluetab.matrioska.core.beans.Item
 import com.bluetab.matrioska.core.beans.{Item, UseCase}
 
 trait DataIngestionService {
