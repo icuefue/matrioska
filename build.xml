@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="linx" basedir="." default="4-install_and_deploy">
+<project name="matrioska" basedir="." default="4-install_and_deploy">
 
 	<target name="1-clean">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
+		<exec dir="." executable="bash">
 			<arg value="mvn" />
 			<arg line="clean" />
 		</exec>
 	</target>
 
 	<target name="2-install" depends="1-clean">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
+		<exec dir="." executable="bash">
 			<arg value="mvn" />
 			<arg line="install" />
 		</exec>
@@ -20,8 +18,8 @@
 	</target>
 
 	<target name="3-deploy">
-		<scp file="./linx-core/target/linx-core.jar" todir="xe31320@lpbig503:/bigdata/workspace/xe31320/linx/lib" password="cuefue13" trust="true" />
-		<scp file="./linx-ingest/target/linx-ingest.jar" todir="xe31320@lpbig503:/bigdata/workspace/xe31320/linx" password="cuefue13" trust="true" />
+		<scp file="./matrioska-core/target/linx-core.jar" todir="ivan@localhost:/home/ivan/matrioska/lib" password="Burgos00" trust="true" />
+		<scp file="./matrioska-ingest/target/linx-ingest.jar" todir="ivan@localhost:/home/ivan/matrioskax" password="Burgos00" trust="true" />
 	</target>
 	<target name="4-install_and_deploy" depends="2-install,3-deploy">
 
@@ -64,8 +62,8 @@
 			<arg value="mvn" />
 			<arg line="clean install" />
 		</exec>
-		<scp file="./linx-core/target/linx-core.jar" todir="xaebdm1p@lpbig503:/pr/ebdm/proc/scrt/linx/lib" password="Beachh0use1p" trust="true" />
-		<scp file="./linx-ingest/target/linx-ingest.jar" todir="xaebdm1p@lpbig503:/pr/ebdm/proc/scrt/linx/" password="Beachh0use1p" trust="true" />
+		<scp file="./matrioska-core/target/linx-core.jar" todir="xaebdm1p@lpbig503:/pr/ebdm/proc/scrt/linx/lib" password="Beachh0use1p" trust="true" />
+		<scp file="./matrioska-ingest/target/linx-ingest.jar" todir="xaebdm1p@lpbig503:/pr/ebdm/proc/scrt/linx/" password="Beachh0use1p" trust="true" />
 	</target>
 
 	<target name="user-input">
