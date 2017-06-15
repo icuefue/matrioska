@@ -18,6 +18,7 @@ import spray.util.pimpFuture
 
 import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, Future}
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 object GovernanceRepositoryProtocol extends Json4sSupport {
