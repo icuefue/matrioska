@@ -1,17 +1,14 @@
 package com.bluetab.matrioska.ingest.services.impl
 
 import java.io.File
+import java.nio.charset.Charset
 import java.nio.file.Paths
 
-import org.joda.time.DateTime
-import com.bluetab.matrioska.ingest.constants.IngestDfsConstants
-import java.nio.charset.Charset
-
-import com.bluetab.matrioska.core.conf.CoreRepositories
 import com.bluetab.matrioska.core.conf.{CoreConfig, CoreRepositories}
 import com.bluetab.matrioska.core.constants.CoreConstants
 import com.bluetab.matrioska.ingest.constants.{IngestConstants, IngestDfsConstants}
 import com.bluetab.matrioska.ingest.services.StagingToPrerawService
+import org.joda.time.DateTime
 
 object StagingToPrerawConstants {
   val Year_Field = "year="

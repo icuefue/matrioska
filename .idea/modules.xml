@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/matrioska.iml" filepath="$PROJECT_DIR$/.idea/matrioska.iml" />
       <module fileurl="file://$PROJECT_DIR$/matrioska-core/matrioska-core.iml" filepath="$PROJECT_DIR$/matrioska-core/matrioska-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/matrioska-ingest/linx-ingest.iml" filepath="$PROJECT_DIR$/matrioska-ingest/linx-ingest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/matrioska-ingest/matrioska-ingest.iml" filepath="$PROJECT_DIR$/matrioska-ingest/matrioska-ingest.iml" />
     </modules>
   </component>
 </project>

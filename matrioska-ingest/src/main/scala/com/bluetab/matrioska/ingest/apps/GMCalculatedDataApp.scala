@@ -1,18 +1,14 @@
 package com.bluetab.matrioska.ingest.apps
 
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import java.text.{DateFormat, SimpleDateFormat}
 import java.util.Date
 
-import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.DataFrame
-import org.apache.spark.sql.Row
-import com.bluetab.matrioska.core.LinxAppArgs
-import com.bluetab.matrioska.core.conf.CoreContext
-import com.bluetab.matrioska.core.conf.CoreServices
+import com.bluetab.matrioska.core.conf.{CoreContext, CoreServices}
 import com.bluetab.matrioska.core.{LinxApp, LinxAppArgs}
 import com.bluetab.matrioska.ingest.conf.IngestServices
 import com.bluetab.matrioska.ingest.constants.IngestConstants
+import org.apache.spark.rdd.RDD
+import org.apache.spark.sql.Row
 
 object GMCalculatedDataAppConstants {
   val srcSchema = IngestConstants.RawSchemaRisks

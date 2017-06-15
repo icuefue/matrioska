@@ -2,14 +2,13 @@ package com.bluetab.matrioska.ingest.apps
 
 import java.io.File
 
+import com.bluetab.matrioska.core.LinxApp
+import com.bluetab.matrioska.core.conf.{CoreConfig, CoreContext}
+import com.bluetab.matrioska.core.exceptions.FatalException
+import com.bluetab.matrioska.ingest.beans.Mask
+import com.bluetab.matrioska.ingest.conf.IngestServices
 import org.apache.commons.lang.exception.ExceptionUtils
 import org.joda.time.DateTime
-import com.bluetab.matrioska.core.conf.CoreContext
-import com.bluetab.matrioska.ingest.beans.Mask
-import com.bluetab.matrioska.core.LinxApp
-import com.bluetab.matrioska.core.conf.CoreConfig
-import com.bluetab.matrioska.core.exceptions.FatalException
-import com.bluetab.matrioska.ingest.conf.IngestServices
 
 /**
  * Movimento de los ficheros encontrados en el staging de entrada a la capa preraw dentro de HDFS. Dentro de la capa

@@ -1,6 +1,5 @@
 /target/
 /scalastyle-output.xml
-/build.xml
 /.settings/
 /.classpath
 /bin/

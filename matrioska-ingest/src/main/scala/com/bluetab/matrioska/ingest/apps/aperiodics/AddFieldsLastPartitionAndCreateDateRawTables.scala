@@ -1,18 +1,11 @@
 package com.bluetab.matrioska.ingest.apps.aperiodics
 
 import java.text.SimpleDateFormat
-import java.util.Calendar
-
-import org.apache.spark.sql.Row
-import org.apache.spark.sql.functions.input_file_name
-import com.bluetab.matrioska.core.conf.CoreRepositories
-import com.bluetab.matrioska.core.conf.CoreServices
 import java.util.Date
 
-import com.bluetab.matrioska.ingest.beans.Table
 import com.bluetab.matrioska.core.LinxApp
 import com.bluetab.matrioska.core.conf.{CoreConfig, CoreRepositories, CoreServices}
-import org.apache.spark.sql.SaveMode
+import org.apache.spark.sql.{Row, SaveMode}
 
 class AddFieldsLastPartitionAndCreateDateRawTables extends LinxApp {
 

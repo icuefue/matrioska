@@ -6,7 +6,7 @@
 		<artifactId>matrioska</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>linx-ingest</artifactId>
+	<artifactId>matrioska-ingest</artifactId>
 	<name>${project.artifactId}</name>
 
 

@@ -1,8 +1,9 @@
 package com.bluetab.matrioska.ingest.beans
 
-import com.bluetab.matrioska.core.enums.FileFormats.FileFormat
-import com.bluetab.matrioska.core.enums.CompressionCodecs.CompressionCodec
 import com.bluetab.matrioska.core.conf.CoreConfig
+import com.bluetab.matrioska.core.enums.CompressionCodecs.CompressionCodec
+import com.bluetab.matrioska.core.enums.FileFormats.FileFormat
+import com.bluetab.matrioska.ingest.utils.FaultToleranceTests.FaultToleranceTest
 
 object FileTypeEnum extends Enumeration {
   type FileTypeEnum = Value
