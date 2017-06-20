@@ -1,63 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="linx" basedir="." default="4-install_and_deploy">
+<project name="matrioska" basedir="." default="1.5-TOTAL">
 
-	<target name="1-clean">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
-			<arg value="mvn" />
+	<target name="1.1-clean">
+		<exec dir="." executable="./mvn.sh">
 			<arg line="clean" />
 		</exec>
 	</target>
 
-	<target name="2-install" depends="1-clean">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
-			<arg value="mvn" />
+	<target name="1.2-install" depends="1.1-clean">
+		<exec dir="." executable="./mvn.sh">
 			<arg line="install" />
 		</exec>
 
 	</target>
 
+	<target name="1.3-Copia Core">
+		<exec dir="." executable="./cp_matrioska.sh">
+			<arg line="./matrioska-core/target/matrioska-core.jar" />
+			<arg line="/home/ivan/matrioska/lib/matrioska-core.jar" />
+		</exec>
+	</target>
+
+	<target name="1.4-Copia Ingest">
+		<exec dir="." executable="./cp_matrioska.sh">
+			<arg line="./matrioska-ingest/target/matrioska-ingest.jar" />
+			<arg line="/home/ivan/matrioska/matrioska-ingest.jar" />
+		</exec>
+	</target>
+
+	<target name="1.5-TOTAL" depends="1.1-clean,1.2-install,1.3-Copia Core,1.4-Copia Ingest"/>
+
+
 	<target name="3-deploy">
 		<scp file="./linx-core/target/linx-core.jar" todir="xe58268@lpbig503:/bigdata/workspace/xe58268/linx/lib" password="xxxxxxxx" trust="true" />
 		<scp file="./linx-ingest/target/linx-ingest.jar" todir="xe58268@lpbig503:/bigdata/workspace/xe58268/linx" password="xxxxxxxx" trust="true" />
 	</target>
-	<target name="4-install_and_deploy" depends="2-install,3-deploy">
-
-	</target>
-	<target name="5-generate site">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
-			<arg value="mvn" />
-			<arg line="site" />
-		</exec>
-	</target>
-
-	<target name="6-generate documentation">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
-			<arg value="mvn" />
-			<arg line="scala:doc" />
-		</exec>
-	</target>
-
-	<target name="7-test">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
-			<arg value="mvn" />
-			<arg line="test" />
-		</exec>
-	</target>
-
-	<target name="8-package">
-		<exec dir="." executable="cmd">
-			<arg value="/C" />
-			<arg value="mvn" />
-			<arg line="package" />
-		</exec>
-	</target>
-
-
 
 </project>

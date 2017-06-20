@@ -83,6 +83,7 @@ object LauncherApp extends App {
               "\n\n" + ExceptionUtils.getFullStackTrace(ex)
             CoreRepositories.mailRepository.sendMail(mailMessage)
           }
+          ex.printStackTrace()
           CoreServices.governmentService.logOnError(ex)
           closeImpalaConnection()
           throw ex
