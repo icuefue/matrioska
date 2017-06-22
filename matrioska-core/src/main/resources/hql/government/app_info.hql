@@ -1,1 +1,2 @@
-select des_malla, des_jobbd, des_scriptbd, des_capabd, des_casusobd from {rd_ebdmgv}.t_ebdmgv07_planning where des_scriptbd = '$1'
+select cod_malla, cod_job, cod_script, des_layer, des_proyecto 
+  from {mtrsk}.mtrsk_pln_mallas where cod_script = '$1'
