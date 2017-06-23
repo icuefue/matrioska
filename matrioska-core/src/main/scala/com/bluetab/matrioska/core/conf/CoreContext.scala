@@ -20,24 +20,27 @@ import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.slf4j.LoggerFactory
 import spray.io.ClientSSLEngineProvider
+import org.apache.log4j.FileAppender
 
 @transient object CoreContext {  
 
-  val appender = new KafkaLog4jAppender //configure the appender
-  private val pattern = "%X{header}\t%d{yyyy/MM/dd HH:mm:ss}\t%X{uuid}\t%X{estado}\t%X{malla}\t%X{job}\t%X{name}\t%X{capa}\t%X{plandate}\t%-5p\t\t%m";
-  private val patternLayout = new LogPatternLayout()
-  patternLayout.setConversionPattern(pattern)
-  appender.setLayout(patternLayout)
-  appender.setThreshold(Level.toLevel(LinxAppArgs.logLevel))
-  appender.setTopic(CoreConfig.kafka.topicLogs)
-  appender.setBrokerList(CoreConfig.kafka.brokerlist)
-  appender.setSyncSend(true)
-  appender.setSecurityProtocol("SASL_PLAINTEXT")
-  appender.setSslTruststorePassword("KerbKeyTrusteePassword")
-  appender.setSslTruststoreLocation("KerbKeyTrusteeLocation")
-  appender.activateOptions()
-    
-  Logger.getLogger("com.bbva.ebdm").addAppender(appender)
+//  val appender = new KafkaLog4jAppender //configure the appender
+//  private val pattern = "%X{header}\t%d{yyyy/MM/dd HH:mm:ss}\t%X{uuid}\t%X{estado}\t%X{malla}\t%X{job}\t%X{name}\t%X{capa}\t%X{plandate}\t%-5p\t\t%m";
+//  private val patternLayout = new LogPatternLayout()
+//  patternLayout.setConversionPattern(pattern)
+//  appender.setLayout(patternLayout)
+//  appender.setThreshold(Level.toLevel(LinxAppArgs.logLevel))
+//  appender.setTopic(CoreConfig.kafka.topicLogs)
+//  appender.setBrokerList(CoreConfig.kafka.brokerlist)
+//  appender.setSyncSend(true)
+//  appender.setSecurityProtocol("SASL_PLAINTEXT")
+//  appender.setSslTruststorePassword("KerbKeyTrusteePassword")
+//  appender.setSslTruststoreLocation("KerbKeyTrusteeLocation")
+//  appender.activateOptions()
+//
+//  val appender = new FileAppender
+//  Logger.getLogger("com.bluetab.matrioska").addAppender(appender)
+  Logger.getLogger("com.bluetab.matrioska")
 
   private val conf = new SparkConf().setAppName(LinxAppArgs.appName)
 
@@ -49,24 +52,24 @@ import spray.io.ClientSSLEngineProvider
 
   val logger = LoggerFactory.getLogger(LinxAppArgs.appName)
 
-  val ugi = UserGroupInformation.loginUserFromKeytabAndReturnUGI(CoreConfig.kerberos.user, "./.keytab");
+//  val ugi = UserGroupInformation.loginUserFromKeytabAndReturnUGI(CoreConfig.kerberos.user, "./.keytab");
 
   var hBaseConnection: Connection = null
-  CoreContext.ugi.doAs(new PrivilegedExceptionAction[Void]() {
-    @throws(classOf[IOException])
-    def run: Void = {
-      hBaseConnection = ConnectionFactory.createConnection()
-      return null
-    }
-  });
+//  CoreContext.ugi.doAs(new PrivilegedExceptionAction[Void]() {
+//    @throws(classOf[IOException])
+//    def run: Void = {
+//      hBaseConnection = ConnectionFactory.createConnection()
+//      return null
+//    }
+//  });
 
   val hadoopConf = new org.apache.hadoop.conf.Configuration()
 
-  hadoopConf.set("hadoop.security.authentication", "kerberos");
+//  hadoopConf.set("hadoop.security.authentication", "kerberos");
 
-  hadoopConf.set("hadoop.security.authorization", "true");
+//  hadoopConf.set("hadoop.security.authorization", "true");
 
-  UserGroupInformation.setConfiguration(hadoopConf);
+//  UserGroupInformation.setConfiguration(hadoopConf);
 
   val dfs = org.apache.hadoop.fs.FileSystem.get(new java.net.URI(CoreConfig.hdfs.uri), hadoopConf)
 
@@ -97,13 +100,13 @@ import spray.io.ClientSSLEngineProvider
 
   var impalaConnection: Option[java.sql.Connection] = None
 
-  CoreContext.ugi.doAs(new PrivilegedExceptionAction[Void]() {
-    @throws(classOf[IOException])
-    def run: Void = {
-      Class.forName(CoreConfig.hive.driver).newInstance()
-      impalaConnection = Some(DriverManager.getConnection(CoreConfig.impala.uri))
-      return null
-    }
-  });
+//  CoreContext.ugi.doAs(new PrivilegedExceptionAction[Void]() {
+//    @throws(classOf[IOException])
+//    def run: Void = {
+//      Class.forName(CoreConfig.hive.driver).newInstance()
+//      impalaConnection = Some(DriverManager.getConnection(CoreConfig.impala.uri))
+//      return null
+//    }
+//  });
 
 }

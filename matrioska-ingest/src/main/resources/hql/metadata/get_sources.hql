@@ -5,8 +5,8 @@ t.default_partitionning as default_partitionning, t.format as file_format, t.com
 f.filetype as file_type, f.field_delimiter as field_delimiter, f.line_delimiter as line_delimiter, f.ends_with_delimiter as ends_with_delimiter,
 f.header as header, f.date_format as date_format, f.line_pattern as line_pattern, f.enclosed_by as enclosed_by, f.escaped_by as escaped_by,
 mf.cod_tolerance as cod_tolerance, mf.parameters as tolerance_parameters
-from {rd_ebdmgv}.t_ebdmgv10_sources s 
-left join {rd_ebdmgv}.t_ebdmgv10_masks m on s.cod_source = m.cod_source
-left join {rd_ebdmgv}.t_ebdmgv10_tables t on m.cod_table = t.cod_table
-left join {rd_ebdmgv}.t_ebdmgv10_filetypes f on m.cod_filetype = f.cod_filetype
-left join {rd_ebdmgv}.t_ebdmgv10_mask_tolerance mf on m.cod_mask = mf.cod_mask
+from {mtrsk}.mtrsk_src_sources s 
+left join {mtrsk}.mtrsk_src_masks m on s.cod_source = m.cod_source
+left join {mtrsk}.mtrsk_lak_tables t on m.cod_table = t.cod_table
+left join {mtrsk}.mtrsk_src_filetypes f on m.cod_filetype = f.cod_filetype
+left join {mtrsk}.mtrsk_src_mask_tolerance mf on m.cod_mask = mf.cod_mask
