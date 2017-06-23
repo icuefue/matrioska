@@ -20,6 +20,7 @@ import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 import org.slf4j.LoggerFactory
 import spray.io.ClientSSLEngineProvider
+import org.apache.log4j.FileAppender
 
 @transient object CoreContext {  
 
@@ -36,8 +37,10 @@ import spray.io.ClientSSLEngineProvider
 //  appender.setSslTruststorePassword("KerbKeyTrusteePassword")
 //  appender.setSslTruststoreLocation("KerbKeyTrusteeLocation")
 //  appender.activateOptions()
-//    
-//  Logger.getLogger("com.bbva.ebdm").addAppender(appender)
+//
+//  val appender = new FileAppender
+//  Logger.getLogger("com.bluetab.matrioska").addAppender(appender)
+  Logger.getLogger("com.bluetab.matrioska")
 
   private val conf = new SparkConf().setAppName(LinxAppArgs.appName)
 
@@ -49,7 +52,7 @@ import spray.io.ClientSSLEngineProvider
 
   val logger = LoggerFactory.getLogger(LinxAppArgs.appName)
 
-  val ugi = UserGroupInformation.loginUserFromKeytabAndReturnUGI(CoreConfig.kerberos.user, "./.keytab");
+//  val ugi = UserGroupInformation.loginUserFromKeytabAndReturnUGI(CoreConfig.kerberos.user, "./.keytab");
 
   var hBaseConnection: Connection = null
 //  CoreContext.ugi.doAs(new PrivilegedExceptionAction[Void]() {
@@ -62,11 +65,11 @@ import spray.io.ClientSSLEngineProvider
 
   val hadoopConf = new org.apache.hadoop.conf.Configuration()
 
-  hadoopConf.set("hadoop.security.authentication", "kerberos");
+//  hadoopConf.set("hadoop.security.authentication", "kerberos");
 
-  hadoopConf.set("hadoop.security.authorization", "true");
+//  hadoopConf.set("hadoop.security.authorization", "true");
 
-  UserGroupInformation.setConfiguration(hadoopConf);
+//  UserGroupInformation.setConfiguration(hadoopConf);
 
   val dfs = org.apache.hadoop.fs.FileSystem.get(new java.net.URI(CoreConfig.hdfs.uri), hadoopConf)
 
