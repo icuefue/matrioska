@@ -11,7 +11,7 @@ import com.bluetab.matrioska.core.beans.MailMessage
 import com.bluetab.matrioska.core.conf.{CoreAppInfo, CoreRepositories}
 import com.bluetab.matrioska.ingest.conf.IngestServices
 
-class DemoApp extends LinxApp {
+class IngestaTabla1 extends LinxApp {
 
   override def run(args: Seq[String]) {
 
@@ -19,17 +19,8 @@ class DemoApp extends LinxApp {
     CoreContext.logger.info("El job es: " + CoreAppInfo.job)
     CoreContext.logger.info("La capa es: " + CoreAppInfo.capa)
     CoreContext.logger.info("El name es: " + CoreAppInfo.name)
-
-    CoreContext.logger.info("El name es: " + CoreRepositories.dfsRepository.getFilePath("/hola/caracola"))
-
-//    val sources = IngestServices.metadataService.loadSources
-//    sources.values.foreach { x => 
-//      println("\n\n\nSources:\n" + x.id + "\n\n\n")
-//      x.masks.foreach { x =>  
-//        println (x.mask)
-//        x.faultToleranceTests.foreach { x => println("faultTolerance:" + x.toString()) }
-//      }
-//    }
+    
+    
 
   }
 }

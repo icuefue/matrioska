@@ -345,11 +345,13 @@ class PrerawToRawServiceImpl extends PrerawToRawService {
     // 
     mask.table.defaultPartitionning match {
       case true =>
-        finalContentDF.write.mode(SaveMode.Append)
-          .partitionBy(PrerawToRawConstants.YearField, PrerawToRawConstants.MonthField, PrerawToRawConstants.DayField, PrerawToRawConstants.LastVersionField)
-          .saveAsTable(mask.table.getFullName)
+//        finalContentDF.write.mode(SaveMode.Append)
+//          .partitionBy(PrerawToRawConstants.YearField, PrerawToRawConstants.MonthField, PrerawToRawConstants.DayField, PrerawToRawConstants.LastVersionField)
+//          .saveAsTable(mask.table.getFullName)
+        CoreRepositories.hiveRepository.saveToTable(finalContentDF, mask.table.schema, mask.table.table, Seq(PrerawToRawConstants.YearField, PrerawToRawConstants.MonthField, PrerawToRawConstants.DayField, PrerawToRawConstants.LastVersionField))
       case false =>
-        finalContentDF.write.mode(SaveMode.Append).saveAsTable(mask.table.getFullName)
+//        finalContentDF.write.mode(SaveMode.Append).saveAsTable(mask.table.getFullName)
+        CoreRepositories.hiveRepository.saveToTable(finalContentDF, mask.table.schema, mask.table.table)
     }
     //Borro todos los ficheros antiguos 
     oldFiles.foreach { x =>

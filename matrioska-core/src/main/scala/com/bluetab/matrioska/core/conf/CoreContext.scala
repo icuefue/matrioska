@@ -38,9 +38,18 @@ import org.apache.log4j.FileAppender
 //  appender.setSslTruststoreLocation("KerbKeyTrusteeLocation")
 //  appender.activateOptions()
 //
-//  val appender = new FileAppender
-//  Logger.getLogger("com.bluetab.matrioska").addAppender(appender)
-  Logger.getLogger("com.bluetab.matrioska")
+  val appender = new FileAppender
+  private val pattern = "%X{header}\t%d{yyyy/MM/dd HH:mm:ss}\t%X{uuid}\t%X{estado}\t%X{malla}\t%X{job}\t%X{name}\t%X{capa}\t%X{plandate}\t%-5p\t%m%n";
+  private val patternLayout = new LogPatternLayout()
+  patternLayout.setConversionPattern(pattern)
+  appender.setLayout(patternLayout)
+  appender.setName("FileLogger");
+  appender.setFile("salida.log");
+  appender.setThreshold(Level.DEBUG);
+  appender.setAppend(false);
+  appender.activateOptions()
+  Logger.getLogger("com.bluetab.matrioska").addAppender(appender)
+//  Logger.getLogger("com.bluetab.matrioska")
 
   private val conf = new SparkConf().setAppName(LinxAppArgs.appName)
 

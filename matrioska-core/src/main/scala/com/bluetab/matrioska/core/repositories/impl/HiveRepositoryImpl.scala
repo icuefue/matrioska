@@ -7,6 +7,7 @@ import com.bluetab.matrioska.core.repositories.HiveRepository
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Row}
 import org.apache.spark.sql.types.StructType
+import org.apache.spark.sql.SaveMode
 
 object HiveRepositoryConstants {
 
@@ -45,12 +46,14 @@ class HiveRepositoryImpl extends HiveRepository {
     if (!CoreAppInfo.notFound) {
       CoreContext.logger.info(s"Hive Query File: $path")
       CoreContext.logger.debug("Hive Query: " + query)
+      CoreContext.logger.info("SRC|SQL|" + query)
     }
     Some(CoreContext.hiveContext.sql(query));
   }
 
   def table(schema: String, table: String): DataFrame = {
     val finalSchema = CoreConfig.hive.schemas.get(schema)
+    CoreContext.logger.info("SRC|TABLE|" + s"$finalSchema.$table")
     CoreContext.hiveContext.table(s"$finalSchema.$table")
   }
 
@@ -80,6 +83,25 @@ class HiveRepositoryImpl extends HiveRepository {
   def refreshTable(schemaName: String, tableName: String): Unit = {
     val finalSchema = CoreConfig.hive.schemas.get(schemaName)
     CoreContext.hiveContext.refreshTable(s"$finalSchema.$tableName")
+  }
+
+  def saveToTable(DFToWrite: DataFrame, tgtSchema: String, tgtTable: String, partition: Seq[String]) = {
+    val fullTableName = CoreConfig.hive.schemas.get(tgtSchema) + "." + tgtTable
+    DFToWrite.repartition(8)
+      .write
+      .mode(SaveMode.Append)
+      .partitionBy(partition: _*)
+      .saveAsTable(fullTableName)
+    CoreContext.logger.info("TGT|TABLE|" + fullTableName)
+  }
+
+  def saveToTable(DFToWrite: DataFrame, tgtSchema: String, tgtTable: String) = {
+    val fullTableName = CoreConfig.hive.schemas.get(tgtSchema) + "." + tgtTable
+    DFToWrite.repartition(8)
+      .write
+      .mode(SaveMode.Append)
+      .saveAsTable(fullTableName)
+    CoreContext.logger.info("TGT|TABLE|" + fullTableName)
   }
 
 }

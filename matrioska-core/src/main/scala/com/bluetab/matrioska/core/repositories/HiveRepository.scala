@@ -64,5 +64,26 @@ trait HiveRepository {
    * @return
    */
   def refreshTable(schemaName: String, tableName: String): Unit
+  
+   /**
+   * Escribe un Dataframe en una tabla Hive particionada
+   *
+   * @param DFToWrite - Dataframe a salvar en Hive
+   * @param tgtSchema - Esquema de la tabla donde salvar
+   * @param tgtTable - Tabla donde salvar
+   * @param partition - Colección de campos con el valor del particionamiento
+   * @return
+   */
+  def saveToTable(DFToWrite: DataFrame, tgtSchema: String, tgtTable: String, partition: Seq[String]): Unit
+  
+   /**
+   * Escribe un Dataframe en una tabla Hive no particionada
+   *
+   * @param DFToWrite - Dataframe a salvar en Hive
+   * @param tgtSchema - Esquema de la tabla donde salvar
+   * @param tgtTable - Tabla donde salvar
+   * @return
+   */
+  def saveToTable(DFToWrite: DataFrame, tgtSchema: String, tgtTable: String): Unit
 
 }

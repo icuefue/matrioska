@@ -70,6 +70,7 @@ class PrerawToRawApp extends LinxApp {
               IngestServices.prerawToRawService.markFilesAsSuccessful(goodFiles)
               //Creamos Fichero Flag de Raw
               IngestServices.commonService.createRawFlag(mask.table.schema, mask.table.table)
+              CoreContext.logger.info("LINK|FILE|" + mask.mask + "|TABLE|" + mask.table.getFullName)
 
             } catch {
               case e: Throwable =>
