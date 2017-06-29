@@ -8,6 +8,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Row}
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.SaveMode
+import com.bluetab.matrioska.core.utils.GovernmentUtils
 
 object HiveRepositoryConstants {
 
@@ -46,14 +47,14 @@ class HiveRepositoryImpl extends HiveRepository {
     if (!CoreAppInfo.notFound) {
       CoreContext.logger.info(s"Hive Query File: $path")
       CoreContext.logger.debug("Hive Query: " + query)
-      CoreContext.logger.info("SRC|SQL|" + query)
+      GovernmentUtils.trazabilityLog("SRC", "SQL", query)
     }
     Some(CoreContext.hiveContext.sql(query));
   }
 
   def table(schema: String, table: String): DataFrame = {
     val finalSchema = CoreConfig.hive.schemas.get(schema)
-    CoreContext.logger.info("SRC|TABLE|" + s"$finalSchema.$table")
+    GovernmentUtils.trazabilityLog("SRC", "TABLE", s"$finalSchema.$table")
     CoreContext.hiveContext.table(s"$finalSchema.$table")
   }
 
@@ -92,7 +93,7 @@ class HiveRepositoryImpl extends HiveRepository {
       .mode(SaveMode.Append)
       .partitionBy(partition: _*)
       .saveAsTable(fullTableName)
-    CoreContext.logger.info("TGT|TABLE|" + fullTableName)
+    GovernmentUtils.trazabilityLog("TGT", "TABLE", fullTableName)
   }
 
   def saveToTable(DFToWrite: DataFrame, tgtSchema: String, tgtTable: String) = {
@@ -101,7 +102,7 @@ class HiveRepositoryImpl extends HiveRepository {
       .write
       .mode(SaveMode.Append)
       .saveAsTable(fullTableName)
-    CoreContext.logger.info("TGT|TABLE|" + fullTableName)
+    GovernmentUtils.trazabilityLog("TGT", "TABLE", fullTableName)
   }
 
 }

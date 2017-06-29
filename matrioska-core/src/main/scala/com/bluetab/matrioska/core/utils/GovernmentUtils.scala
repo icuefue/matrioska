@@ -1,6 +1,9 @@
 package com.bluetab.matrioska.core.utils
 
 import org.apache.spark.sql.Row
+import com.bluetab.matrioska.core.conf.CoreContext
+import com.bluetab.matrioska.core.services.GovernmentService
+import org.slf4j.MDC
 
 object GovernmentUtils {
   def formatDetailsLogs(line: String): Row = {
@@ -65,5 +68,12 @@ object GovernmentUtils {
   
   def parselogs(line:String):Array[String] = {
     line.replaceAll("[\n\r]"," ").split("\t")
+  }
+  
+  def trazabilityLog(obj_rol:String, obj_type:String, obj_name:String) = {
+    val full_msg = "TRAZABILITY" + "|" + obj_rol + "|" + obj_type + "|" + obj_name
+    MDC.put("header", "TRAZABILITY")
+    CoreContext.logger.info(full_msg)
+    MDC.put("header", "DETAIL")
   }
 }

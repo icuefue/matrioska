@@ -16,7 +16,7 @@ trait GovernmentService extends Serializable {
 
   object LogHeaderEnum extends Enumeration {
     type LogHeaderEnum = Value
-    val DETAIL, EXECUTION, AUDITRAW = Value
+    val DETAIL, EXECUTION, AUDITRAW, TRAZABILITY = Value
   }
 
   object LogStatusEnum extends Enumeration {

@@ -13,6 +13,7 @@ import org.apache.spark.streaming.dstream.DStream
 
 import scala.collection.mutable.ListBuffer
 import scala.reflect.runtime.universe.Type
+import com.bluetab.matrioska.core.utils.GovernmentUtils
 
 class DFSRepositoryImpl extends DFSRepository {
 
@@ -171,7 +172,7 @@ class DFSRepositoryImpl extends DFSRepository {
 
   def textFile(path: String): RDD[String] = {
     CoreContext.logger.info("textFile - Leyendo fichero:" + getFilePath(path))
-    CoreContext.logger.info("SRC|FILE|" + getFilePath(path))
+    GovernmentUtils.trazabilityLog("SRC", "FILE", getFilePath(path))
     CoreContext.sc.textFile(getFilePath(path))
   }
 
@@ -181,13 +182,13 @@ class DFSRepositoryImpl extends DFSRepository {
 
   def wholeTextFile(path: String, minPartitions: Int): RDD[(String, String)] = {
     CoreContext.logger.info("wholeTextFile - Leyendo fichero:" + getFilePath(path))
-    CoreContext.logger.info("SRC|FILE|" + getFilePath(path))
+    GovernmentUtils.trazabilityLog("SRC", "FILE", getFilePath(path))
     CoreContext.sc.wholeTextFiles(getFilePath(path), minPartitions)
   }
 
   def readCsvAsDF(path: String, c: Type): DataFrame = {
     CoreContext.logger.info("Leyendo fichero:" + getFilePath(path))
-    CoreContext.logger.info("SRC|FILE|" + getFilePath(path))
+    GovernmentUtils.trazabilityLog("SRC", "FILE", getFilePath(path))
 
     val resultDF = CoreContext.hiveContext.read.format("com.databricks.spark.csv")
       .option("header", "false")
@@ -215,7 +216,7 @@ class DFSRepositoryImpl extends DFSRepository {
 
   def readCsvAsDF(path: String, c: StructType, delimiter: String, header: Boolean, dateFormat: String): DataFrame = {
     CoreContext.logger.info("Leyendo fichero:" + getFilePath(path))
-    CoreContext.logger.info("SRC|FILE|" + getFilePath(path))
+    GovernmentUtils.trazabilityLog("SRC", "FILE", getFilePath(path))
 
     var resultDF = CoreContext.hiveContext.read.format("com.databricks.spark.csv")
       .option("header", header.toString)
@@ -228,12 +229,12 @@ class DFSRepositoryImpl extends DFSRepository {
   }
 
   def saveAsTextFiles(source: DStream[String], path: String) {
-    CoreContext.logger.info("TGT|FILE|" + getFilePath(path))
+    GovernmentUtils.trazabilityLog("TGT", "FILE", getFilePath(path))
     source.saveAsTextFiles(getFilePath(path), "")
   }
 
   def saveAsTextFile(rdd: RDD[String], path: String) = {
-    CoreContext.logger.info("TGT|FILE|" + getFilePath(path))
+    GovernmentUtils.trazabilityLog("TGT", "FILE", getFilePath(path))
     rdd.saveAsTextFile(getFilePath(path))
   }
 }

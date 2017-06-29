@@ -17,6 +17,7 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.SparkContext
+import com.bluetab.matrioska.core.utils.GovernmentUtils
 
 class PrerawToRawApp extends LinxApp {
 
@@ -70,7 +71,7 @@ class PrerawToRawApp extends LinxApp {
               IngestServices.prerawToRawService.markFilesAsSuccessful(goodFiles)
               //Creamos Fichero Flag de Raw
               IngestServices.commonService.createRawFlag(mask.table.schema, mask.table.table)
-              CoreContext.logger.info("LINK|FILE|" + mask.mask + "|TABLE|" + mask.table.getFullName)
+              GovernmentUtils.trazabilityLog("LINK", "", "FILE@" + mask.mask + "@TABLE@" + mask.table.getFullName)
 
             } catch {
               case e: Throwable =>
