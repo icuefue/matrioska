@@ -1,0 +1,7 @@
+/.project
+
+/build.xml
+/build_template.xml
+*.iml
+/.gitconfig
+.idea/
