@@ -1,0 +1,48 @@
+environment: DEV
+
+hdfs:
+  uri: hdfs://quickstart.cloudera:8020
+  prefix: 
+
+impala:
+  uri: jdbc:hive2://quickstart.cloudera:21051/default
+
+hive:
+  driver: org.apache.hive.jdbc.HiveDriver
+  schemas:
+    mtrsk: mtrsk
+    rmtrskparam: rmtrskparam
+    raw_sells: raw_sells
+
+hbase:
+  schemas:
+    ebdm: D_EBDM
+
+kafka:
+  zqquorum: quickstart.cloudera:2181/kafka
+  brokerlist: quickstart.cloudera:9092
+  checkpointDir: hdfs://quickstart.cloudera:8020/user/%{user}/checkpointdir
+  topicLogs: EBDM-d-log-ingesta
+
+kerberos:
+  user: "%{user}@CLOUDERA_CIB.COM"
+  keytab: /user/%{user}/.keytab
+
+localfilesystempath:
+  staging: /home/%{user}/matrioska/stag
+  dat: /home/%{user}/matrioska/dat
+
+navigator: 
+  uri: https://quickstart.cloudera:7187/api/v8/entities/
+  host: quickstart.cloudera
+  port: 7187
+  username: xe50584
+  password: <<password>>
+
+solr:
+  uri: http://quickstart.cloudera:8983/solr/
+  dictionaryCollection: AppDiccionario
+
+mail: 
+  script: /home/%{user}/matrioska/scripts/sendmail.sh
+ 

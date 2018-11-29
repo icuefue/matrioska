@@ -1,0 +1,72 @@
+environment: PRO
+
+hdfs:
+  uri: hdfs://cib-hdfs-analitico
+  prefix: 
+
+impala:
+  uri: jdbc:hive2://lpbig501.igrupobbva:21051/default;principal=impala/lpbig501.igrupobbva@CLOUDERA_CIB.COM;auth-kerberos
+
+hive:
+  driver: org.apache.hive.jdbc.HiveDriver
+  schemas:
+    rd_ebdmau: rd_ebdmau
+    rd_ebdmgv: rd_ebdmgv
+    md_eva: md_eva
+    rd_gsds: rd_gsds
+    rd_informacional: rd_informacional
+    ud_xe58268_test: ud_xe58268_test
+    rd_gm_calculated_data: rd_gm_calculated_data
+    rd_sstt: rd_sstt
+    rd_netcash: rd_netcash
+    md_gm_calculated_data: md_gm_calculated_data
+    rd_mat: rd_mat
+    md_gsds : md_gsds
+    md_tablasgenerales : md_tablasgenerales
+    md_netcash_analytics: md_netcash_analytics
+    rd_murex: rd_murex
+    rd_star: rd_star
+    rd_mrsys: rd_mrsys
+    rd_algorithmics: rd_algorithmics
+    rd_rdr: rd_rdr
+    rd_assetcontrol: rd_assetcontrol
+    md_gsr: md_gsr
+    
+hbase:
+  schemas: 
+    ebdm: EBDM
+
+kafka:
+  zqquorum: lpbig503:2181/kafka
+  brokerlist: lpbig501:9092,lpbig502:9092,lpbig503:9092
+  checkpointDir: hdfs://cib-hdfs-analitico/user/%{user}/checkpointdir
+  topicLogs: EBDM-log-ingesta
+
+kerberos:
+  user: "%{user}@CLOUDERA_CIB.COM"
+  keytab: /user/%{user}/.keytab
+
+localfilesystempath:
+  staging: /usr/local/pr/cloudera/staging/01
+  dat: /pr/ebdm/proc/dat
+
+rdbms:
+  informacional_oracle_ekev:
+    uri: jdbc:oracle:thin:@lpexa500-scan:1521/EKEV
+    username: xaekev3e
+    password: <<password>>
+
+navigator: 
+  uri: https://lpbig502.igrupobbva:7187/api/v8/entities/
+  host: lpbig503.igrupobbva
+  port: 7187
+  username: xe50584
+  password: <<password>>
+
+solr:
+  uri: http://lpbig501:8983/solr/
+  dictionaryCollection: AppDiccionario
+
+mail: 
+  script: /pr/ebgc/online/multipais/multicanal/cloudera_tools/tools/scripts/sendmail.sh
+ 
